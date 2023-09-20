@@ -1,56 +1,49 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace TeruletKeruletSzamitas
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
         }
+
         private void CalculateButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                double a = Convert.ToDouble(txtSideA.Text);
-                double b = Convert.ToDouble(txtSideB.Text);
-                double c = Convert.ToDouble(txtSideC.Text);
+                double aCM = Convert.ToDouble(txtSideA.Text);
+                double bCM = Convert.ToDouble(txtSideB.Text);
+                double cCM = Convert.ToDouble(txtSideC.Text);
+
+                // Átváltás centiméterről méterre (1 méter = 100 centiméter)
+                double a = aCM / 100.0;
+                double b = bCM / 100.0;
+                double c = cCM / 100.0;
 
                 if (a + b > c && a + c > b && b + c > a)
                 {
-                    double kerulet = a + b + c;
-                    double s = kerulet / 2; // Félszélesség
-                    double terulet = Math.Sqrt(s * (s - a) * (s - b) * (s - c));
+                    double keruletCM = (a + b + c) * 100.0; // Eredményt átváltjuk centiméterbe
+                    double s = keruletCM / 2; // Félszélesség
+                    double teruletCM2 = (Math.Sqrt(s * (s - a) * (s - b) * (s - c))) * 10000.0; // Eredményt átváltjuk négyzetcentiméterbe
 
-                    lblResult.Content = $"Kerület: {kerulet:F2}, Terület: {terulet:F2}";
+                    lblKerulet.Text = keruletCM.ToString("F2");
+                    lblTerulet.Text = teruletCM2.ToString("F2");
                 }
                 else
                 {
-                    lblResult.Content = "Nem háromszög!";
+                    lblKerulet.Text = "Nem háromszög!";
+                    lblTerulet.Text = "";
                 }
             }
+            catch (FormatException)
+            {
+                lblKerulet.Text = "Hibás adatok!";
+                lblTerulet.Text = "";
             }
-        Catch(FormatException) 
-        {
-            lblResult.Content = "Hibás adatok!";
         }
-        }
+
     }
 }
