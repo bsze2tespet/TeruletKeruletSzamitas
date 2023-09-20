@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace TeruletKeruletSzamitas
 {
@@ -8,9 +10,31 @@ namespace TeruletKeruletSzamitas
         public MainWindow()
         {
             InitializeComponent();
+            InitializeDefaultValues();
         }
 
-        private void CalculateButton_Click(object sender, RoutedEventArgs e)
+        private void InitializeDefaultValues()
+        {
+            // Alapértelmezett értékek beállítása a beviteli mezőkbe
+            txtSideA.Text = "10";
+            txtSideB.Text = "20";
+            txtSideC.Text = "15";
+
+            // Adatkapcsolat hozzáadása a beviteli mezőkhöz a változások figyeléséhez
+            txtSideA.TextChanged += InputTextChanged;
+            txtSideB.TextChanged += InputTextChanged;
+            txtSideC.TextChanged += InputTextChanged;
+
+            // Kezdeti eredmény kiszámítása
+            UpdateResults();
+        }
+
+        private void InputTextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateResults();
+        }
+
+        private void UpdateResults()
         {
             try
             {
@@ -44,6 +68,5 @@ namespace TeruletKeruletSzamitas
                 lblTerulet.Text = "";
             }
         }
-
     }
 }

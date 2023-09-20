@@ -7,24 +7,21 @@
             <TextBlock Text="Háromszög kalkulátor" FontSize="20" FontWeight="Bold" Margin="0 0 0 20"/>
 
             <TextBlock Text="Hosszúság a (cm):"/>
-            <TextBox Name="txtSideA" Margin="0 5 0 10"/>
+            <TextBox Name="txtSideA" Margin="0 5 0 10" Text="10"/>
 
             <TextBlock Text="Hosszúság b (cm):"/>
-            <TextBox Name="txtSideB" Margin="0 5 0 10"/>
+            <TextBox Name="txtSideB" Margin="0 5 0 10" Text="20"/>
 
             <TextBlock Text="Hosszúság c (cm):"/>
-            <TextBox Name="txtSideC" Margin="0 5 0 10"/>
-
-            <Button Content="Számol" Click="CalculateButton_Click" Width="100" Margin="0 20 0 0"/>
+            <TextBox Name="txtSideC" Margin="0 5 0 10" Text="15"/>
 
             <TextBlock Name="lblResult" FontSize="18" FontWeight="Bold" Margin="0 20 0 0">
-        <Run Text="Kerület (cm): "/>
-        <Run x:Name="lblKerulet" Text="0" TextDecorations="Underline"/>
-        <LineBreak/>
-        <Run Text="Terület (cm²): "/>
-        <Run x:Name="lblTerulet" Text="0" TextDecorations="Underline"/>
+                <Run Text="Kerület (cm): "/>
+                <Run x:Name="lblKerulet" Text="0" TextDecorations="Underline"/>
+                <LineBreak/>
+                <Run Text="Terület (cm²): "/>
+                <Run x:Name="lblTerulet" Text="0" TextDecorations="Underline"/>
             </TextBlock>
         </StackPanel>
-
     </Grid>
 </Window>
